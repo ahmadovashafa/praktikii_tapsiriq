@@ -1,0 +1,1 @@
+# praktikii_tapsiriq
