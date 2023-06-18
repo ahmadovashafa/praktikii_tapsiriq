@@ -1,0 +1,19 @@
+/*Create a function that returns the number of Saturdays between the two inputted dates.*/
+select count(*) as Saturday_count from(
+select next_day (date '2023-01-01','Saturday')+7*(level-1 ) as Saturday
+from dual
+connect by next_day(date '2023-01-01','Saturday')+7*(level-1)<=add_months(date '2023-09-01',0));
+
+/*Create a function that finds the sum of digits of the inputted number. Example 675=6+7+5=18*/
+
+select sum(substr(to_char(675), level, 1)) as sum_of_digits
+from dual
+connect by level <= length(to_char(675))
+group by 675;
+
+--hello -> elloh
+
+select listagg(substr('hello', level, 1), '') within group (order by level desc) as reversed_word
+from dual
+connect by level <= length('hello');
+
